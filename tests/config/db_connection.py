@@ -1,0 +1,1 @@
+DB_NAME = 'sqlite_python.db'
