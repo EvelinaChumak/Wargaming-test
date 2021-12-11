@@ -70,3 +70,38 @@ class ShipInfo():
                 ','.join(values.keys()),
                 ','.join(['?']*len(values)))
             self.db.execute(DBMethod.INSERT, sql, tuple(values.values()))
+
+    def change_ship_info(self):
+        for i in range(1,TABLE.SHIPS_COUNT+1):
+            rand_param = randint(1,len(TABLE.SHIPS_VALUES)-1)
+            param = TABLE.SHIPS_VALUES[rand_param]
+            if rand_param == 1:
+                value = TABLE.WEAPONS_NAME + str(randint(1,TABLE.WEAPONS_COUNT+1))
+            elif rand_param == 2:
+                value = TABLE.HULLS_NAME + str(randint(1,TABLE.HULLS_COUNT+1))
+            elif rand_param == 3:
+                value = TABLE.ENGINES_NAME + str(randint(1,TABLE.ENGINES_COUNT+1))
+            sql = Query.UPDATE_SHIPS.format(param, value, str(i))
+            self.db.execute(DBMethod.UPDATE, sql)
+            
+    def change_other_info(self):
+        for i in range(1,TABLE.WEAPONS_COUNT+1):
+            rand_param = randint(1, len(TABLE.WEAPONS_VALUES)-1)
+            param = TABLE.WEAPONS_VALUES[rand_param]
+            value = randint(1, TABLE.INT_PARAMS)
+            sql = Query.UPDATE_SHIPS.format(param, value, str(i))
+            self.db.execute(DBMethod.UPDATE, sql)
+            
+        for i in range(1,TABLE.HULLS_COUNT+1):
+            rand_param = randint(1, len(TABLE.HULLS_VALUES)-1)
+            param = TABLE.HULLS_VALUES[rand_param]
+            value = randint(1, TABLE.INT_PARAMS)
+            sql = Query.UPDATE_SHIPS.format(param, value, str(i))
+            self.db.execute(DBMethod.UPDATE, sql)
+            
+        for i in range(1,TABLE.ENGINES_COUNT+1):
+            rand_param = randint(1, len(TABLE.ENGINES_VALUES)-1)
+            param = TABLE.ENGINES_VALUES[rand_param]
+            value = randint(1, TABLE.INT_PARAMS)
+            sql = Query.UPDATE_SHIPS.format(param, value, str(i))
+            self.db.execute(DBMethod.UPDATE, sql)

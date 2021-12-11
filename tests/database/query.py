@@ -33,3 +33,20 @@ INSERT_HULLS = '''INSERT INTO Hulls ({}) VALUES ({});'''
 INSERT_ENGINES = '''INSERT INTO Engines ({}) VALUES ({});'''
 
 INSERT_SHIPS = '''INSERT INTO Ships ({}) VALUES ({});'''
+
+UPDATE_SHIPS = '''UPDATE Ships
+               SET {} = {}
+               WHERE ship = {};'''
+
+UPDATE_WEAPONS = '''UPDATE Weapons
+                 SET {} = {}
+                 WHERE weapon = {};'''
+
+UPDATE_HULLS = '''UPDATE Hulls
+               SET {} = {}
+               WHERE hull = {};'''
+
+UPDATE_ENGINES = '''UPDATE Engines
+                 SET {} = {}
+                 WHERE engine = {};'''
+            

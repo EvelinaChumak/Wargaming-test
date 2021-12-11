@@ -24,11 +24,11 @@ class Database():
     def execute(self, method : DBMethod, query, params = None):
         Logger.info('Применяю метод :' + method.name)
         try:
-            if (method == DBMethod.CREATE):
+            if (method == DBMethod.CREATE or method == DBMethod.UPDATE):
                 self.__cursor.execute(query)
             else:
                 self.__cursor.execute(query, params)
-            if (method == DBMethod.INSERT or method == DBMethod.UPDATE or
+            if (method == DBMethod.INSERT or
                     method == DBMethod.DELETE or method==DBMethod.CREATE):
                 self.__connection.commit()
             if method == DBMethod.SELECT:

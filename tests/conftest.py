@@ -25,6 +25,7 @@ def connect_and_change_copy_db():
     shutil.copy(DB_NAME, COPY_DB_NAME)
     pytest.copy_db = ShipInfo(DB_NAME=COPY_DB_NAME)
     pytest.copy_db.connect()
+    pytest.copy_db.change_ship_info()
 
     yield
 
