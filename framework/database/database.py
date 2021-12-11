@@ -1,29 +1,24 @@
 import sqlite3 as sql
 from framework.utils.logger import Logger
 from framework.constants.db_method import DBMethod
-from tests.config.db_connection import DB_NAME
 
 class Database():
     
-    __instance = None
-
-    def __new__(self):
-        if not self.__instance:
-            self.__instance = super(Database, self).__new__(self)
-            self.__connection = None
-            self.__cursor = None
-        return self.__instance
+    def __init__(self, DB_NAME):
+        self.__db_name = DB_NAME
+        self.__connection = None
+        self.__cursor = None
     
     def connect(self):
         try:
-            Logger.info('Подключение к базе данных')
-            self.__connection = sql.connect(DB_NAME)
+            Logger.info('Подключение к базе данных ' + self.__db_name)
+            self.__connection = sql.connect(self.__db_name)
             self.__cursor = self.__connection.cursor()
         except sql.Error as error:
             Logger.info("Ошибка при подключении к sqlite" + error)
             
     def close_connection(self):
-        Logger.info('Отключение от базы данных')
+        Logger.info('Отключение от базы данных ' + self.__db_name)
         self.__connection.close()
         
     def execute(self, method : DBMethod, query, params = None):

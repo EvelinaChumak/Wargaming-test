@@ -25,3 +25,11 @@ CREATE_SHIPS = '''CREATE TABLE Ships (
                FOREIGN KEY (weapon) REFERENCES Weapons (weapon),
                FOREIGN KEY (hull) REFERENCES Hulls (hull),
                FOREIGN KEY (engine) REFERENCES Engines (engine));'''
+
+INSERT_WEAPONS = '''INSERT INTO Weapons ({}) VALUES ({});'''
+
+INSERT_HULLS = '''INSERT INTO Hulls ({}) VALUES ({});'''
+
+INSERT_ENGINES = '''INSERT INTO Engines ({}) VALUES ({});'''
+
+INSERT_SHIPS = '''INSERT INTO Ships ({}) VALUES ({});'''
