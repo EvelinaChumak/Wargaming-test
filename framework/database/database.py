@@ -21,20 +21,23 @@ class Database():
         Logger.info('Отключение от базы данных ' + self.__db_name)
         self.__connection.close()
         
-    def execute(self, method : DBMethod, query, params = None):
+    def execute(self, method : DBMethod, query):
         Logger.info('Применяю метод :' + method.name)
         try:
-            if (method == DBMethod.CREATE or method == DBMethod.UPDATE):
-                self.__cursor.execute(query)
-            else:
-                self.__cursor.execute(query, params)
-            if (method == DBMethod.INSERT or
-                    method == DBMethod.DELETE or method==DBMethod.CREATE):
-                self.__connection.commit()
+            self.__cursor.execute(query)
             if method == DBMethod.SELECT:
                 self.elems = self.__cursor.fetchall()
+            else:
+                self.__connection.commit()
         except sql.Error as error:
             Logger.warning(str(error))
             
     def close_cursore(self):
         self.__cursor.close()
+    
+    def get_elems(self):
+        """
+        Use after SELECT
+        """
+        Logger.info('Получение списка элементов после метода')
+        return self.elems

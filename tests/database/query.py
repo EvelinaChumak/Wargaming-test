@@ -26,27 +26,34 @@ CREATE_SHIPS = '''CREATE TABLE Ships (
                FOREIGN KEY (hull) REFERENCES Hulls (hull),
                FOREIGN KEY (engine) REFERENCES Engines (engine));'''
 
-INSERT_WEAPONS = '''INSERT INTO Weapons ({}) VALUES ({});'''
+INSERT_WEAPONS = '''INSERT INTO Weapons ({}) VALUES {};'''
 
-INSERT_HULLS = '''INSERT INTO Hulls ({}) VALUES ({});'''
+INSERT_HULLS = '''INSERT INTO Hulls ({}) VALUES {};'''
 
-INSERT_ENGINES = '''INSERT INTO Engines ({}) VALUES ({});'''
+INSERT_ENGINES = '''INSERT INTO Engines ({}) VALUES {};'''
 
-INSERT_SHIPS = '''INSERT INTO Ships ({}) VALUES ({});'''
+INSERT_SHIPS = '''INSERT INTO Ships ({}) VALUES {};'''
 
 UPDATE_SHIPS = '''UPDATE Ships
-               SET {} = {}
-               WHERE ship = {};'''
+               SET {} = '{}'
+               WHERE ship = '{}';'''
 
 UPDATE_WEAPONS = '''UPDATE Weapons
                  SET {} = {}
-                 WHERE weapon = {};'''
+                 WHERE weapon = '{}';'''
 
 UPDATE_HULLS = '''UPDATE Hulls
                SET {} = {}
-               WHERE hull = {};'''
+               WHERE hull = '{}';'''
 
 UPDATE_ENGINES = '''UPDATE Engines
                  SET {} = {}
-                 WHERE engine = {};'''
-            
+                 WHERE engine = '{}';'''
+
+SELECT_SHIP = '''SELECT ship, {} from Ships WHERE ship = '{}';'''
+
+SELECT_WEAPON = '''SELECT * from Weapons WHERE weapon = '{}';'''
+
+SELECT_HULL = '''SELECT * from Hulls WHERE hull = '{}';'''
+
+SELECT_ENGINE = '''SELECT * from Engines WHERE engine = '{}';'''
